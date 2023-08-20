@@ -1,0 +1,13 @@
+:root{
+    --color-principal: rgb(23,56,89);/*variable css para cambiar en javascript*/
+    
+}
+.link-dom{
+    color:var(--color-principal);
+}
+.elemento-secundario{
+    color:green;
+}
+.elemento-alterno{
+    color:red;
+}

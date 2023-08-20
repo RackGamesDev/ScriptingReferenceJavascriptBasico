@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>titulo</h1>
+    <form id="todo-form">
+        <input type="text" id="todo-item" placeholder="algo">
+        <input type="submit" value="agregar">
+    </form>
+    <h2>lista</h2>
+    <ul id="todo-list"></ul>
+    <script src="./Component.js"></script>
+    <script>
+        //aqui es lo mismo que antes pero con un script que deja crear componentes con estados, como lo hace react o vue.js o otros
+        const d = document;
+        const app = new Component({//traer la libreria de los componentes configurandolo para este html, se podria crear uno por cada componente necesario
+            el: "#todo-list",
+            data: {
+                todoList: []
+            },
+            template: function (props) {
+                if(props.todoList.length < 1){
+                    return '<p>lista vacia</p>'
+                }
+                let todos = props.todoList.map(item => '<li>' + item + '</li>').join("");
+                return todos;
+            }
+        });
+
+        d.addEventListener("DOMContentLoaded", app.render);
+
+        d.addEventListener("submit", e => {
+            if(!e.target.matches("#todo-form")) return false;
+            e.preventDefault();
+            const $item = d.getElementById("todo-item");
+            if (!$item) return;
+
+            const lastState = app.getState();
+            lastState.todoList.push($item.value);
+            app.setState({todoList: lastState.todoList});
+            app.render();
+            $item.value = "";
+            $item.focus();
+        });
+    </script>
+</body>
+</html>

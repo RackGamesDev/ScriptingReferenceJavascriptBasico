@@ -1,0 +1,9 @@
+{
+    "texto": "hola",
+    "numero1": 33,
+    "numero2": 3.6,
+    "siono": "true",
+    "arrayy": [1,4,"hola"],
+    "objetoo": {"nombre": "nom", "tamagno": 3},
+    "nulo": null
+}

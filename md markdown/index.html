@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>titulo</h1>
+    <main>
+
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.js" ></script>    
+    <script>
+        
+        const d = document;
+        const $main = d.querySelector("main");
+        fetch("./archivo.md")//donde esta el archivo
+        .then(res => res.ok ? res.text(): Promise.reject(res))
+        .then(text => {//si no hay error text es el texto del .md
+            $main.innerHTML = new showdown.Converter().makeHtml(text);//esto devuelve lo del .md pero en formato html
+        })
+        .catch(err => {
+            console.log(err);
+            $main.innerHTML = err.statusText || "error";
+        });
+    </script>
+</body>
+</html>
