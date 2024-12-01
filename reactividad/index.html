@@ -14,26 +14,26 @@
     <h2>lista</h2>
     <ul id="todo-list"></ul>
     <script>
-        //esto agnade items a la lista, en lugar de ser por manipulacion del dom es por componentes y reactividad (sin usar react) (se hace una variable estado preferiblemente intocable directamente, cuando esta se acutaliza el ui tambien)
+        //Esto agnade items a la lista, en lugar de ser por manipulacion del dom es por componentes y reactividad (sin usar react) (se hace una variable estado preferiblemente intocable directamente, cuando esta se acutaliza el ui tambien)
         const d = document;
 
-        const state = {//al ser reactivo, se necesita una variable de estado
+        const state = {//Al ser reactivo, se necesita una variable de estado
             todoList: []
         }
-        const template = () => {//crear la interfaz desde javascript
+        const template = () => {//Crear la interfaz desde javascript
             if(state.todoList.length < 1){
                 return '<p>lista vacia</p>'
             }
             let todos = state.todoList.map(item => '<li>' + item + '</li>').join("");
             return todos;
         }
-        const render = () => {//funcion para actualizar la interfaz, se ejecuta periodicamente o al cambiar algo
+        const render = () => {//Funcion para actualizar la interfaz, se ejecuta periodicamente o al cambiar algo
             const $list = d.getElementById("todo-list");
             if (!$list) return;
             $list.innerHTML = template();
         }
         d.addEventListener("DOMContentLoaded", render);
-        const setState = obj => {//para no tocar directamente la variable estado se hace una funcion para manejarla, haciendolo reactivo
+        const setState = obj => {//Para no tocar directamente la variable estado se hace una funcion para manejarla, haciendolo reactivo
             for(let key in obj){
                 if(state.hasOwnProperty(key)){
                     state[key] = obj[key];
